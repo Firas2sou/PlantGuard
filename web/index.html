@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaf Check - plant disease screening</title>
+<style>
+  :root {
+    --bg: #f6f7f4;
+    --card: #ffffff;
+    --ink: #1d2b1f;
+    --muted: #5b6b5e;
+    --line: #dfe4da;
+    --green: #2e7d32;
+    --green-soft: #e6f2e5;
+    --amber: #b26a00;
+    --amber-soft: #fff4e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  header {
+    padding: 22px 18px 10px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  header p { margin: 0; color: var(--muted); font-size: 14px; }
+  main { max-width: 720px; margin: 0 auto; padding: 8px 18px 40px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  button {
+    font: inherit;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+    padding: 11px 16px;
+    cursor: pointer;
+  }
+  button.primary { background: var(--green); border-color: var(--green); color: #fff; }
+  button:disabled { opacity: .55; cursor: default; }
+  video, canvas.preview {
+    width: 100%;
+    border-radius: 12px;
+    background: #0b0f0b;
+    margin-top: 12px;
+    display: none;
+  }
+  video.on, canvas.preview.on { display: block; }
+  .hint { color: var(--muted); font-size: 13px; margin-top: 10px; }
+  .row { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+  .bar { flex: 1; height: 9px; border-radius: 6px; background: #edf0ea; overflow: hidden; }
+  .bar span { display: block; height: 100%; background: var(--green); border-radius: 6px; }
+  .pct { width: 56px; text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; color: var(--muted); }
+  .name { font-weight: 600; min-width: 0; flex: 1.3; }
+  .crop { color: var(--muted); font-weight: 400; font-size: 13px; }
+  .pill { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+  .pill.ok { background: var(--green-soft); color: var(--green); }
+  .pill.warn { background: var(--amber-soft); color: var(--amber); }
+  h2 { font-size: 16px; margin: 0 0 8px; }
+  h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; margin: 16px 0 6px; color: var(--muted); }
+  ul { margin: 0; padding-left: 18px; }
+  li { margin: 4px 0; font-size: 14px; }
+  .meta { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .notice {
+    background: var(--amber-soft); color: #6b4a00; border: 1px solid #f0d9ab;
+    border-radius: 10px; padding: 10px 12px; font-size: 14px; margin-top: 12px;
+  }
+  .disclaimer { color: var(--muted); font-size: 12px; margin-top: 18px; text-align: center; }
+  .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid #cfd8c8; border-top-color: var(--green); border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -2px; margin-right: 6px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Leaf Check</h1>
+  <p>Photograph a leaf to see whether the plant looks healthy and which disease is most likely.</p>
+</header>
+
+<main>
+  <section class="card">
+    <div class="actions">
+      <button class="primary" id="btnCamera">Take a photo</button>
+      <button id="btnUpload">Choose an image</button>
+      <input type="file" id="file" accept=".jpg,.jpeg,.png,.webp" class="hidden">
+    </div>
+    <video id="video" playsinline muted></video>
+    <canvas id="shot" class="preview"></canvas>
+  <p class="hint" id="hint">Supported crops: apple, blueberry, cherry, corn, grape, orange, peach, pepper, potato, raspberry, soybean, squash, strawberry, tomato. Images: JPEG, PNG or WebP.</p>
+  </section>
+
+  <section class="card hidden" id="result">
+    <h2 id="verdict">Result</h2>
+    <div id="notice" class="notice hidden"></div>
+    <div id="top3"></div>
+    <div id="details"></div>
+  </section>
+
+  <p class="disclaimer">Screening aid only, not a substitute for a professional diagnosis.<br>Model: MobileNetV3-Small - PlantVillage, 38 classes.</p>
+</main>
+
+<script>
+const video = document.getElementById('video');
+const shot = document.getElementById('shot');
+const fileInput = document.getElementById('file');
+const result = document.getElementById('result');
+const verdict = document.getElementById('verdict');
+const notice = document.getElementById('notice');
+const top3 = document.getElementById('top3');
+const details = document.getElementById('details');
+const hint = document.getElementById('hint');
+const btnCamera = document.getElementById('btnCamera');
+const btnUpload = document.getElementById('btnUpload');
+let stream = null;
+
+async function startCamera() {
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 } }
+    });
+    video.srcObject = stream;
+    video.classList.add('on');
+    await video.play();
+    btnCamera.textContent = 'Capture';
+    btnCamera.onclick = capture;
+    hint.textContent = 'Frame a single leaf and press Capture.';
+  } catch (err) {
+    hint.textContent = 'Camera unavailable (' + err.message + '). Use "Choose an image" instead.';
+  }
+}
+
+async function capture() {
+  if (!stream) return;
+  const w = video.videoWidth, h = video.videoHeight;
+  shot.width = w; shot.height = h;
+  shot.getContext('2d').drawImage(video, 0, 0, w, h);
+  shot.classList.add('on');
+  video.classList.remove('on');
+  stopCamera();
+  const blob = await new Promise(r => shot.toBlob(r, 'image/jpeg', 0.92));
+  await predict(blob);
+}
+
+function stopCamera() {
+  if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+  btnCamera.textContent = 'Take a photo';
+  btnCamera.onclick = startCamera;
+}
+
+async function predict(blob) {
+  result.classList.remove('hidden');
+  verdict.innerHTML = '<span class="spinner"></span>Analysing...';
+  top3.innerHTML = '';
+  details.innerHTML = '';
+  notice.classList.add('hidden');
+
+  const form = new FormData();
+  form.append('file', blob, 'leaf.jpg');
+
+  try {
+    const res = await fetch('/predict', { method: 'POST', body: form });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || ('HTTP ' + res.status));
+    }
+    render(await res.json());
+  } catch (err) {
+    verdict.textContent = 'Could not analyse the image';
+    notice.textContent = err.message;
+    notice.classList.remove('hidden');
+  }
+}
+
+function render(data) {
+  const best = data.predictions[0];
+  const healthy = data.confident && best.healthy;
+  verdict.innerHTML = data.confident
+    ? (healthy ? 'Looks healthy' : 'Most likely: <span style="color:var(--green)">' + esc(best.disease) + '</span>')
+    : 'Not sure';
+
+  if (!data.confident) {
+    notice.textContent = data.message;
+    notice.classList.remove('hidden');
+  }
+
+  top3.innerHTML = '';
+  for (const p of data.predictions) {
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML =
+      '<div class="name">' + esc(p.disease) + ' <span class="crop">' + esc(p.crop) + '</span></div>' +
+      '<div class="bar"><span style="width:' + (p.confidence * 100).toFixed(1) + '%"></span></div>' +
+      '<div class="pct">' + (p.confidence * 100).toFixed(1) + '%</div>';
+    top3.appendChild(row);
+  }
+
+  const d = data.details || {};
+  details.innerHTML = '';
+  if (d.disease) {
+    details.innerHTML += '<h3>About this result</h3>' +
+      '<div><strong>' + esc(d.crop || '') + ' - ' + esc(d.disease) + '</strong></div>' +
+      '<div class="meta">' + esc(d.pathogen || '') + '</div>';
+    if (d.symptoms && d.symptoms.length) {
+      details.innerHTML += '<h3>Symptoms to check</h3><ul>' + d.symptoms.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>';
+    }
+    if (d.treatment && d.treatment.length) {
+      details.innerHTML += '<h3>What you can do</h3><ul>' + d.treatment.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>';
+    }
+    if (d.prevention && d.prevention.length) {
+      details.innerHTML += '<h3>Prevention</h3><ul>' + d.prevention.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>';
+    }
+  }
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+btnCamera.onclick = startCamera;
+btnUpload.onclick = () => fileInput.click();
+fileInput.onchange = async () => {
+  if (!fileInput.files.length) return;
+  const file = fileInput.files[0];
+  const previewUrl = URL.createObjectURL(file);
+  const preview = new Image();
+  preview.onload = () => {
+    shot.width = preview.naturalWidth;
+    shot.height = preview.naturalHeight;
+    shot.getContext('2d').drawImage(preview, 0, 0);
+    URL.revokeObjectURL(previewUrl);
+  };
+  preview.onerror = () => URL.revokeObjectURL(previewUrl);
+  preview.src = previewUrl;
+  shot.classList.add('on');
+  stopCamera();
+  await predict(file);
+};
+</script>
+</body>
+</html>

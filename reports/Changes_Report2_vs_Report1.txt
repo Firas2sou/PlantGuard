@@ -1,0 +1,161 @@
+REPORT 2 vs REPORT 1 - WHAT CHANGED
+====================================
+
+Report 1  "Dataset Preparation Report - Academic Project"
+          prepared 25 October 2026, 10 sections
+          files: Dataset_Preparation_Report.docx / .pdf
+                 Rapport_Preparation_Donnees_FR.docx / .pdf
+
+Report 2  "Project Report - Data, Models and Web Application"
+          prepared 2 November 2026, 11 sections
+          same file names, content regenerated
+
+Reason for the change: between the two versions the project scope was
+simplified (E3-E8 experiments removed), the models were named explicitly,
+and the web application (API + page) was built and documented.
+
+
+1. TITLE BLOCK
+--------------
+Subtitle
+  Report 1  "Dataset Preparation Report - Academic Project"
+  Report 2  "Project Report - Data, Models and Web Application"
+  FR 1      "Rapport de préparation du jeu de données - Projet académique"
+  FR 2      "Rapport de projet - Données, modèles et application web"
+
+Date
+  Report 1  25 October 2026
+  Report 2  2 November 2026
+
+Intro note
+  Report 1  "... scripts listed in Section 7 ..."
+  Report 2  "... scripts listed in Section 8 ..."   (after renumbering)
+
+Document properties were renamed as well
+  "Dataset Preparation Report" -> "Project Report"
+  "dataset preparation phase"  -> "data, models and web application"
+
+
+2. SECTION 1 - PROJECT OVERVIEW
+-------------------------------
+Report 1
+  "This report documents the dataset preparation phase: acquisition,
+   extraction, splitting, and quality audit. The preparation is complete;
+   model training and the web application are the following phases
+   (see Section 10)."
+
+Report 2
+  "This report documents the preparation phase: acquisition, extraction,
+   splitting and quality audit, then the models trained on the resulting
+   data and the web application that serves them. All three are complete;
+   only optional validation on real photographs remains (Section 11)."
+
+Same change in the French version (section 11 instead of section 10).
+
+
+3. SECTION 6 - RENAMED, MODELS NOW NAMED EXPLICITLY
+---------------------------------------------------
+Heading
+  Report 1  "6. Split sanity check (validation experiments)"
+  Report 2  "6. Models used and validation results"
+
+Table columns
+  Report 1  Experiment | Model | Test top-1 | Test top-3 | Test macro-F1
+  Report 2  Model | Role | Trainable parameters | Test top-1 | Test top-3 | Test macro-F1
+
+Rows
+  Report 1  "E1 - Frozen MobileNetV3-Small features + logistic regression - 97.26% ..."
+            "E2 - Fine-tuned MobileNetV3-Small (10 epochs, Radeon RX 9070) - 99.33% ..."
+
+  Report 2  "Linear probe on frozen MobileNetV3-Small features (logistic regression)
+             - Baseline - 21,926 - 97.26% - 99.88% - 96.51%"
+            "MobileNetV3-Small, fine-tuned end-to-end (10 epochs, Radeon RX 9070)
+             - Main model - 1,556,806 - 99.33% - 99.97% - 99.11%"
+
+Added sentence
+  The main model is exported to ONNX (opset 17, numerical parity verified)
+  and is the model served by the web application.
+
+Added reference
+  Howard, A., Sandler, M., Chu, G., et al. (2019). Searching for MobileNetV3.
+
+
+4. NEW SECTION 7 - WEB APPLICATION  (entirely new content)
+----------------------------------------------------------
+  - Architecture: FastAPI server (src/serve/app.py) + one static page
+    (web/index.html). No Node.js, no bundler.
+  - Endpoint table: GET / , GET /health , POST /predict
+  - Pre-processing chain: short side resized to 256 px, centre crop 224x224,
+    ImageNet normalisation - identical to training
+  - Disease record from knowledge/diseases.json (crop, pathogen, symptoms,
+    treatment, prevention)
+  - Confidence gate: below 0.60, or margin under 0.15 over the runner-up,
+    the answer is "not sure"
+  - Verification: 298/300 test images correct through the API (99.3 %),
+    matching the training test accuracy; manual checks returned apple scab
+    at 92.8 % and tomato late blight at 82.8 %
+  - Command to start the service
+
+This new section pushed every later section down by one number.
+
+
+5. RENUMBERING OF SECTIONS
+--------------------------
+   7. Reproducibility   ->  8. Reproducibility
+   8. Files produced    ->  9. Files produced
+   9. References        ->  10. References
+  10. Next steps        ->  11. Next steps
+
+Cross-reference updated in section 1 ("Section 10" -> "Section 11").
+
+
+6. SECTION 9 - FILES PRODUCED  (3 rows added)
+----------------------------------------------
+  src/serve/app.py            FastAPI service: /predict, /health, static page
+  web/index.html              Single-page user interface (camera or upload)
+  knowledge/diseases.json     38 disease records shown after a prediction
+
+
+7. SECTION 11 - NEXT STEPS REWRITTEN
+------------------------------------
+Report 1  (5 items, experiments planned)
+  - E3 strong augmentation / E4 random backgrounds
+  - E5 EfficientNet-B0 / E6 segmented-vs-colour ablation
+  - E7 evaluation on real field photographs
+  - E8 confidence calibration and rejection threshold
+  - serving (FastAPI + ONNX) and the PWA with disease cards
+
+Report 2  (3 items, all optional)
+  - informal test on about 20 real field photographs
+  - expose the service on the local network for phone use
+  - deploy to free hosting for a live demonstration
+
+Reason: the simplified scope removed E3-E6 and E8; the app itself is done,
+so serving is no longer a "next step".
+
+
+8. WHAT DID NOT CHANGE
+----------------------
+  - Sections 2, 3, 4, 5 (data source, preparation pipeline, dataset
+    statistics, quality audit) are identical.
+  - All dataset numbers and audit results are unchanged: 54,305 images,
+    38 classes, splits 39,234 / 4,362 / 10,709, 0 corrupt, 24 exact
+    duplicate groups, 558 near-duplicate pairs, 0 crossing a split.
+  - Section 8 (reproducibility) content and commands are unchanged.
+  - Reference list unchanged apart from the Howard et al. addition.
+
+
+9. FRENCH VERSION
+-----------------
+Every change above is mirrored in Rapport_Preparation_Donnees_FR
+(same section numbers, same tables, same wording in French).
+
+
+10. FILES AFFECTED
+------------------
+  C:\plant-doctor\scripts\make_report_docx.py       (generator, English)
+  C:\plant-doctor\scripts\make_report_docx_fr.py    (generator, French)
+  C:\plant-doctor\reports\Dataset_Preparation_Report.docx / .pdf
+  C:\plant-doctor\reports\Rapport_Preparation_Donnees_FR.docx / .pdf
+  C:\plant-doctor\reports\class_distribution.png    (unchanged, Figure 1)
+  C:\plant-doctor\reports\class_distribution_fr.png (unchanged, French Figure 1)

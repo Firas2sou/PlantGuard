@@ -1,0 +1,16 @@
+data/
+.venv/
+.venv-rocm/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Keep experiment checkpoints out of Git, but include the small model used by the app.
+models/*.onnx
+models/*.pt
+models/*.tflite
+!models/E2_mobilenet_v3_small.onnx
+
+!reports/demo_script.md

@@ -1,0 +1,344 @@
+{
+  "Apple___Apple_scab": {
+    "crop": "Apple",
+    "disease": "Apple scab",
+    "pathogen": "Fungus - Venturia inaequalis",
+    "symptoms": ["Olive-green to black velvety spots on leaves", "Spots enlarge and turn brown, leaves may curl or drop", "Scabby dark lesions on fruit"],
+    "treatment": ["Remove and destroy fallen leaves", "Apply a protectant fungicide from bud break (e.g. captan or myclobutanil)"],
+    "prevention": ["Choose scab-resistant cultivars", "Prune for airflow and clear the orchard floor"],
+    "severity": "moderate"
+  },
+  "Apple___Black_rot": {
+    "crop": "Apple",
+    "disease": "Black rot",
+    "pathogen": "Fungus - Botryosphaeria obtusa",
+    "symptoms": ["Purple 'frogeye' spots on leaves", "Brown rot spreading on fruit", "Black cankers on branches"],
+    "treatment": ["Cut out cankers and remove mummified fruit", "Fungicide programme during the growing season"],
+    "prevention": ["Sanitation: remove dead wood and fruit", "Keep trees vigorous but not over-fertilised"],
+    "severity": "high"
+  },
+  "Apple___Cedar_apple_rust": {
+    "crop": "Apple",
+    "disease": "Cedar apple rust",
+    "pathogen": "Fungus - Gymnosporangium juniperi-virginianae",
+    "symptoms": ["Bright yellow-orange spots with a red border on leaves", "Orange spots on fruit", "Spore horns on nearby junipers in spring"],
+    "treatment": ["Fungicide sprays in spring during infection periods", "Remove galls from nearby juniper hosts"],
+    "prevention": ["Plant rust-resistant apple cultivars", "Avoid planting apples close to junipers"],
+    "severity": "moderate"
+  },
+  "Apple___healthy": {
+    "crop": "Apple",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No lesions, spots or discoloration"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Continue routine pruning, watering and monitoring"],
+    "severity": "none"
+  },
+  "Blueberry___healthy": {
+    "crop": "Blueberry",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No spots or lesions"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Maintain soil acidity and routine monitoring"],
+    "severity": "none"
+  },
+  "Cherry_(including_sour)___Powdery_mildew": {
+    "crop": "Cherry",
+    "disease": "Powdery mildew",
+    "pathogen": "Fungus - Podosphaera clandestina",
+    "symptoms": ["White powdery coating on young leaves", "Leaf curling and distortion", "Stunted shoot growth"],
+    "treatment": ["Sulphur or potassium bicarbonate sprays", "Remove heavily infected shoots"],
+    "prevention": ["Prune for airflow", "Avoid excessive nitrogen"],
+    "severity": "moderate"
+  },
+  "Cherry_(including_sour)___healthy": {
+    "crop": "Cherry",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No powdery coating or spots"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine pruning and monitoring"],
+    "severity": "none"
+  },
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "crop": "Corn",
+    "disease": "Gray leaf spot (Cercospora)",
+    "pathogen": "Fungus - Cercospora zeae-maydis",
+    "symptoms": ["Long rectangular grey-brown lesions between veins", "Lesions run parallel to the leaf edge", "Lower leaves affected first"],
+    "treatment": ["Fungicide at tasselling if pressure is high", "Avoid continuous corn on the same field"],
+    "prevention": ["Resistant hybrids", "Crop rotation and residue management"],
+    "severity": "moderate"
+  },
+  "Corn_(maize)___Common_rust_": {
+    "crop": "Corn",
+    "disease": "Common rust",
+    "pathogen": "Fungus - Puccinia sorghi",
+    "symptoms": ["Small orange-brown pustules on both leaf surfaces", "Pustules rupture and release rust-coloured spores", "Yellowing around lesions"],
+    "treatment": ["Fungicide only if infection is early and severe", "Usually no action needed"],
+    "prevention": ["Rust-resistant hybrids", "Early planting in high-pressure areas"],
+    "severity": "low"
+  },
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "crop": "Corn",
+    "disease": "Northern leaf blight",
+    "pathogen": "Fungus - Exserohilum turcicum",
+    "symptoms": ["Long cigar-shaped grey-green lesions", "Lesions turn tan with dark margins", "Damage starts on lower leaves"],
+    "treatment": ["Fungicide when lesions appear before tasselling", "Remove crop residue after harvest"],
+    "prevention": ["Resistant hybrids", "Rotation with non-host crops"],
+    "severity": "moderate"
+  },
+  "Corn_(maize)___healthy": {
+    "crop": "Corn",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No lesions or pustules"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine monitoring and balanced fertilisation"],
+    "severity": "none"
+  },
+  "Grape___Black_rot": {
+    "crop": "Grape",
+    "disease": "Black rot",
+    "pathogen": "Fungus - Guignardia bidwellii",
+    "symptoms": ["Brown circular leaf lesions with black dots", "Berries shrivel into hard black mummies", "Rapid spread in warm wet weather"],
+    "treatment": ["Remove mummified berries and infected canes", "Fungicide from bud break to veraison"],
+    "prevention": ["Open canopy and good airflow", "Remove wild vines nearby"],
+    "severity": "high"
+  },
+  "Grape___Esca_(Black_Measles)": {
+    "crop": "Grape",
+    "disease": "Esca (black measles)",
+    "pathogen": "Fungal complex - Phaeomoniella, Phaeoacremonium",
+    "symptoms": ["Interveinal yellow or red 'tiger stripe' pattern", "Leaf margins dry out", "Dark streaks in the wood"],
+    "treatment": ["Remove and burn affected wood", "No chemical cure once established"],
+    "prevention": ["Clean pruning tools", "Protect pruning wounds"],
+    "severity": "high"
+  },
+  "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+    "crop": "Grape",
+    "disease": "Grape leaf blight",
+    "pathogen": "Fungus - Pseudocercospora vitis",
+    "symptoms": ["Irregular dark brown lesions on leaves", "Lesions merge and the leaf dries", "Premature defoliation"],
+    "treatment": ["Fungicide during wet periods", "Remove infected leaves"],
+    "prevention": ["Canopy management for airflow", "Avoid overhead irrigation"],
+    "severity": "moderate"
+  },
+  "Grape___healthy": {
+    "crop": "Grape",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No lesions or discoloration"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine canopy management and monitoring"],
+    "severity": "none"
+  },
+  "Orange___Haunglongbing_(Citrus_greening)": {
+    "crop": "Orange",
+    "disease": "Huanglongbing (citrus greening)",
+    "pathogen": "Bacterium - Candidatus Liberibacter asiaticus, spread by the Asian citrus psyllid",
+    "symptoms": ["Blotchy asymmetric yellow mottle on leaves", "Yellow shoots on one branch", "Lopsided bitter fruit"],
+    "treatment": ["Remove and destroy infected trees", "Control the psyllid vector"],
+    "prevention": ["Use certified disease-free planting material", "Psyllid monitoring and insecticides"],
+    "severity": "critical"
+  },
+  "Peach___Bacterial_spot": {
+    "crop": "Peach",
+    "disease": "Bacterial spot",
+    "pathogen": "Bacterium - Xanthomonas arboricola pv. pruni",
+    "symptoms": ["Small angular purple-black spots", "Spots drop out leaving 'shot holes'", "Pitting on fruit"],
+    "treatment": ["Copper sprays during dormancy and early season", "Remove severely infected shoots"],
+    "prevention": ["Resistant varieties", "Avoid overhead irrigation and crowding"],
+    "severity": "moderate"
+  },
+  "Peach___healthy": {
+    "crop": "Peach",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No spots or shot holes"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine pruning and monitoring"],
+    "severity": "none"
+  },
+  "Pepper,_bell___Bacterial_spot": {
+    "crop": "Pepper (bell)",
+    "disease": "Bacterial spot",
+    "pathogen": "Bacterium - Xanthomonas spp.",
+    "symptoms": ["Small water-soaked spots turning brown", "Yellow halo around lesions", "Leaf drop in severe cases"],
+    "treatment": ["Copper-based sprays", "Remove infected debris"],
+    "prevention": ["Clean seed and transplants", "Crop rotation, avoid overhead watering"],
+    "severity": "moderate"
+  },
+  "Pepper,_bell___healthy": {
+    "crop": "Pepper (bell)",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No spots or yellowing"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine monitoring and rotation"],
+    "severity": "none"
+  },
+  "Potato___Early_blight": {
+    "crop": "Potato",
+    "disease": "Early blight",
+    "pathogen": "Fungus - Alternaria solani",
+    "symptoms": ["Brown lesions with concentric rings", "Yellow halo around spots", "Starts on older lower leaves"],
+    "treatment": ["Fungicide at first symptoms", "Remove infected lower leaves"],
+    "prevention": ["Rotation of at least 2 years", "Adequate nitrogen and irrigation"],
+    "severity": "moderate"
+  },
+  "Potato___Late_blight": {
+    "crop": "Potato",
+    "disease": "Late blight",
+    "pathogen": "Oomycete - Phytophthora infestans",
+    "symptoms": ["Water-soaked dark green to brown lesions", "White fuzzy growth on the underside in humid weather", "Rapid collapse of the plant"],
+    "treatment": ["Destroy infected plants immediately", "Preventive fungicide in wet weather"],
+    "prevention": ["Certified seed potatoes", "Avoid overhead irrigation, monitor forecasts"],
+    "severity": "critical"
+  },
+  "Potato___healthy": {
+    "crop": "Potato",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No lesions"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine monitoring and rotation"],
+    "severity": "none"
+  },
+  "Raspberry___healthy": {
+    "crop": "Raspberry",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No spots or lesions"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine pruning and monitoring"],
+    "severity": "none"
+  },
+  "Soybean___healthy": {
+    "crop": "Soybean",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No lesions"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine monitoring"],
+    "severity": "none"
+  },
+  "Squash___Powdery_mildew": {
+    "crop": "Squash",
+    "disease": "Powdery mildew",
+    "pathogen": "Fungus - Podosphaera xanthii",
+    "symptoms": ["White powdery patches on leaves", "Leaves yellow and dry out", "Spreads quickly in dry warm weather"],
+    "treatment": ["Sulphur or potassium bicarbonate sprays", "Remove badly affected leaves"],
+    "prevention": ["Spacing for airflow", "Avoid excess nitrogen"],
+    "severity": "moderate"
+  },
+  "Strawberry___Leaf_scorch": {
+    "crop": "Strawberry",
+    "disease": "Leaf scorch",
+    "pathogen": "Fungus - Diplocarpon earlianum",
+    "symptoms": ["Purple to brown spots on leaves", "Leaf edges look scorched", "Severe spotting causes defoliation"],
+    "treatment": ["Remove old infected leaves after harvest", "Fungicide in wet seasons"],
+    "prevention": ["Renew beds regularly", "Good spacing and airflow"],
+    "severity": "moderate"
+  },
+  "Strawberry___healthy": {
+    "crop": "Strawberry",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No spots"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine bed management"],
+    "severity": "none"
+  },
+  "Tomato___Bacterial_spot": {
+    "crop": "Tomato",
+    "disease": "Bacterial spot",
+    "pathogen": "Bacterium - Xanthomonas spp.",
+    "symptoms": ["Small water-soaked spots turning brown", "Yellow halo around spots", "Leaves may drop"],
+    "treatment": ["Copper-based sprays", "Remove infected foliage"],
+    "prevention": ["Clean seed and transplants", "Rotation, avoid overhead watering"],
+    "severity": "moderate"
+  },
+  "Tomato___Early_blight": {
+    "crop": "Tomato",
+    "disease": "Early blight",
+    "pathogen": "Fungus - Alternaria solani",
+    "symptoms": ["Brown concentric 'bullseye' lesions", "Yellow halo around lesions", "Lower leaves affected first"],
+    "treatment": ["Fungicide at first symptoms", "Remove infected lower leaves and mulch"],
+    "prevention": ["Rotation", "Stake plants and water at the base"],
+    "severity": "moderate"
+  },
+  "Tomato___Late_blight": {
+    "crop": "Tomato",
+    "disease": "Late blight",
+    "pathogen": "Oomycete - Phytophthora infestans",
+    "symptoms": ["Greasy dark brown lesions", "White fuzzy growth on the underside", "Rapid wilting and collapse"],
+    "treatment": ["Remove and destroy infected plants", "Preventive fungicide in cool wet weather"],
+    "prevention": ["Avoid overhead irrigation", "Monitor weather and neighbours' crops"],
+    "severity": "critical"
+  },
+  "Tomato___Leaf_Mold": {
+    "crop": "Tomato",
+    "disease": "Leaf mold",
+    "pathogen": "Fungus - Passalora fulva",
+    "symptoms": ["Pale yellow patches on the upper leaf", "Olive-green velvety mold underneath", "Common in humid greenhouses"],
+    "treatment": ["Improve ventilation and reduce humidity", "Remove affected leaves", "Fungicide if needed"],
+    "prevention": ["Keep humidity below 85%", "Wider plant spacing"],
+    "severity": "moderate"
+  },
+  "Tomato___Septoria_leaf_spot": {
+    "crop": "Tomato",
+    "disease": "Septoria leaf spot",
+    "pathogen": "Fungus - Septoria lycopersici",
+    "symptoms": ["Small circular spots with grey centres", "Tiny black dots inside the spots", "Starts on lower leaves"],
+    "treatment": ["Remove infected leaves", "Fungicide at first symptoms"],
+    "prevention": ["Mulch to stop soil splash", "Rotation and cleanup of debris"],
+    "severity": "moderate"
+  },
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "crop": "Tomato",
+    "disease": "Two-spotted spider mite",
+    "pathogen": "Pest - Tetranychus urticae",
+    "symptoms": ["Fine yellow stippling on leaves", "Fine webbing on the underside", "Leaves dry and turn bronze"],
+    "treatment": ["Strong water spray on the underside", "Insecticidal soap or miticide"],
+    "prevention": ["Maintain humidity", "Avoid dusty, hot conditions", "Encourage natural predators"],
+    "severity": "moderate"
+  },
+  "Tomato___Target_Spot": {
+    "crop": "Tomato",
+    "disease": "Target spot",
+    "pathogen": "Fungus - Corynespora cassiicola",
+    "symptoms": ["Brown lesions with concentric rings", "Lesions on leaves, stems and fruit", "Yellowing around the spots"],
+    "treatment": ["Fungicide programme", "Remove infected debris"],
+    "prevention": ["Rotation", "Avoid leaf wetness, improve airflow"],
+    "severity": "moderate"
+  },
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "crop": "Tomato",
+    "disease": "Tomato yellow leaf curl virus",
+    "pathogen": "Virus (begomovirus) - spread by whiteflies",
+    "symptoms": ["Leaves curl upwards and yellow at the edges", "Stunted growth and few fruit", "Symptoms on new growth first"],
+    "treatment": ["Remove infected plants", "Control whitefly populations"],
+    "prevention": ["Whitefly netting and traps", "Resistant varieties", "Avoid planting near infected crops"],
+    "severity": "critical"
+  },
+  "Tomato___Tomato_mosaic_virus": {
+    "crop": "Tomato",
+    "disease": "Tomato mosaic virus",
+    "pathogen": "Virus - Tomato mosaic virus (ToMV), spread by contact and seed",
+    "symptoms": ["Light and dark green mosaic mottling", "Leaf distortion", "Stunted plants"],
+    "treatment": ["No cure: remove and destroy infected plants", "Disinfect tools and hands"],
+    "prevention": ["Use virus-free seed", "Wash hands and tools, avoid tobacco contact"],
+    "severity": "high"
+  },
+  "Tomato___healthy": {
+    "crop": "Tomato",
+    "disease": "Healthy",
+    "pathogen": "None",
+    "symptoms": ["Uniform green leaves", "No spots, mottling or curling"],
+    "treatment": ["No treatment needed"],
+    "prevention": ["Routine watering at the base and monitoring"],
+    "severity": "none"
+  }
+}
