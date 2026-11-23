@@ -110,8 +110,8 @@ py -3.12 -m venv .venv
 .venv\Scripts\python.exe -m pip install -r requirements-serve.txt
 ```
 
-The final ONNX model is included in the repository. The raw dataset and training checkpoints are
-not needed to run the app.
+The final ONNX model and its ordered class-name list are included in the repository. The raw
+dataset, processed training manifests and training checkpoints are not needed to run the app.
 
 Start the service:
 
@@ -129,7 +129,8 @@ device. Camera access may require HTTPS there; image upload remains available.
 | `GET /health` | Confirms the model loads and reports the model name and class count |
 | `POST /predict` | multipart `file` (JPEG/PNG/WebP) → top-3 predictions, confidence, disease details |
 
-The service loads `models/E2_mobilenet_v3_small.onnx` with ONNX Runtime (no torch at inference
-time). Predictions below 0.60 confidence, or with a margin under 0.15 over the runner-up, are
-returned with `"confident": false` and the UI shows "Not sure" instead of a disease name.
+The service loads `models/E2_mobilenet_v3_small.onnx` and
+`models/E2_mobilenet_v3_small.classes.json` with ONNX Runtime (no torch or `data/` folder at
+inference time). Predictions below 0.60 confidence, or with a margin under 0.15 over the runner-up,
+are returned with `"confident": false` and the UI shows "Not sure" instead of a disease name.
 Disease text comes from `knowledge/diseases.json`.

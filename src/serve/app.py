@@ -20,7 +20,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 MODEL = ROOT / "models" / "E2_mobilenet_v3_small.onnx"
-INDEX = ROOT / "data" / "processed" / "class_index.json"
+CLASS_NAMES = ROOT / "models" / "E2_mobilenet_v3_small.classes.json"
 KNOWLEDGE = ROOT / "knowledge" / "diseases.json"
 WEB = ROOT / "web" / "index.html"
 
@@ -42,8 +42,10 @@ def load_model() -> ort.InferenceSession:
 
 @lru_cache
 def load_classes() -> list[str]:
-    index = json.loads(INDEX.read_text(encoding="utf-8"))
-    return [name for name, _ in sorted(index.items(), key=lambda kv: kv[1])]
+    names = json.loads(CLASS_NAMES.read_text(encoding="utf-8"))
+    if not isinstance(names, list) or not names or not all(isinstance(name, str) for name in names):
+        raise ValueError(f"invalid model class list: {CLASS_NAMES}")
+    return names
 
 
 @lru_cache

@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -41,7 +42,13 @@ def main() -> None:
         )
     except Exception as exc:  # noqa: BLE001
         sys.exit(f"export failed: {exc}")
+    classes_out = out.with_suffix(".classes.json")
+    classes_out.write_text(
+        json.dumps(ckpt["class_names"], indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
     print(f"exported -> {out}")
+    print(f"class names -> {classes_out}")
 
 
 if __name__ == "__main__":
